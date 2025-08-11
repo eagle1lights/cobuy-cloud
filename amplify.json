@@ -1,0 +1,30 @@
+rm amplify.json
+cat > amplify.json << 'EOF'
+{
+  "version": 1,
+  "frontend": {
+    "phases": {
+      "preBuild": {
+        "commands": [
+          "node -v",
+          "npm -v",
+          "npm ci || npm install"
+        ]
+      },
+      "build": {
+        "commands": [
+          "npm run export",
+          "ls -la out || (echo 'out missing - failing build'; exit 1)"
+        ]
+      }
+    },
+    "artifacts": {
+      "baseDirectory": "out",
+      "files": ["**/*"]
+    },
+    "cache": {
+      "paths": ["node_modules/**/*"]
+    }
+  }
+}
+EOF
