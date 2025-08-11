@@ -8,12 +8,12 @@ frontend:
         - npm install
     build:
       commands:
-        - echo "=== Starting Next static export ==="
-        - npm run export
-        - echo "=== Build finished; contents of repo root ==="
-        - ls -la
+        - echo "=== Next build ==="
+        - npm run build
+        # If Next didn't write to out/ automatically, fall back to next export
+        - if [ ! -d "out" ]; then npx next export; fi
         - echo "=== Contents of out/ ==="
-        - ls -la out || (echo "out/ not found – failing build"; exit 1)
+        - ls -la out || (echo "out/ missing — failing build"; exit 1)
   artifacts:
     baseDirectory: out
     files:
