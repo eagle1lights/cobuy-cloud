@@ -1,20 +1,15 @@
-rm amplify.json
-cat > amplify.json << 'EOF'
 {
   "version": 1,
   "frontend": {
     "phases": {
       "preBuild": {
         "commands": [
-          "node -v",
-          "npm -v",
-          "npm ci || npm install"
+          "npm ci"
         ]
       },
       "build": {
         "commands": [
-          "npm run export",
-          "ls -la out || (echo 'out missing - failing build'; exit 1)"
+          "npm run export"
         ]
       }
     },
@@ -27,4 +22,3 @@ cat > amplify.json << 'EOF'
     }
   }
 }
-EOF
