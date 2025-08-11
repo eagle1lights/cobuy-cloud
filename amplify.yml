@@ -5,7 +5,7 @@ frontend:
       commands:
         - npm ci || npm install
         - npm run export
-        - ls -la out || (echo "out/ missing — failing build"; exit 1)
+        - ls -la out || (echo out\ missing\ -\ failing\ build; exit 1)
   artifacts:
     baseDirectory: out
     files:
