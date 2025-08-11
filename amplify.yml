@@ -3,10 +3,17 @@ frontend:
   phases:
     preBuild:
       commands:
+        - node -v
+        - npm -v
         - npm install
     build:
       commands:
+        - echo "=== Starting Next static export ==="
         - npm run export
+        - echo "=== Build finished; contents of repo root ==="
+        - ls -la
+        - echo "=== Contents of out/ ==="
+        - ls -la out || (echo "out/ not found – failing build"; exit 1)
   artifacts:
     baseDirectory: out
     files:
